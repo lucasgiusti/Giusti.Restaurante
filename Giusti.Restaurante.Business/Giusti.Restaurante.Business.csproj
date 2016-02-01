@@ -64,7 +64,7 @@
       <Project>{227b1034-8668-4956-b28f-0d2369270fae}</Project>
       <Name>Giusti.Restaurante.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Giusti.Restaurante\Giusti.Restaurante.Model.csproj">
+    <ProjectReference Include="..\Giusti.Restaurante.Model\Giusti.Restaurante.Model.csproj">
       <Project>{c3191030-716c-48c4-8592-2130bb06954a}</Project>
       <Name>Giusti.Restaurante.Model</Name>
     </ProjectReference>
