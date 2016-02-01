@@ -1,0 +1,64 @@
+﻿<div>
+    <form class="form-horizontal" data-ng-init="getMesa()">
+        <div class="row">
+            <div class="span10">
+                <h2>{{heading}} {{mesa.id}}</h2>
+            </div>
+        </div>
+        <div ng-show="mesa.situacao == '0'">
+            <div class="row">
+                <div class="span10">
+                    <a href="/" class="btn btn-warning">Voltar</a>
+                    <a href="#" class="btn btn-primary" ng-click="AbrirMesa()">Abrir Mesa</a>
+                </div>
+            </div>
+        </div>
+        <div ng-show="mesa.situacao != '0'">
+            <div class="row" ng-show="mesa.situacao == '1'">
+                <div class="span10">
+                    <a href="/menu/{{mesa.id}}" class="btn btn-primary">Incluir Item</a>
+                </div>
+            </div>
+            <div class="row" ng-show="mesa.situacao == '2'">
+                <div class="span10">
+                    <label>Valor total: R$ {{mesa.pedidos[0].valorTotal | number:2}}</label>
+                </div>
+            </div>
+            <div class="row" ng-show="mesa.situacao == '2'">
+                <div class="span10">
+                    <a href="/" class="btn btn-warning">Voltar</a>
+                    <a href="#" class="btn btn-primary" ng-click="LiberarMesa()">Liberar Mesa</a>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="span10" ng-show="mesa.pedidos[0].pedidoPratos.length == 0">
+                    Nenhum item adicionado
+                </div>
+            </div>
+            <div class="row">
+                        <div class="span10">
+                            <table class="table table-hover">
+                                <tr ng-repeat="pedidoPrato in mesa.pedidos[0].pedidoPratos">
+                                    <td>{{pedidoPrato.prato.categoria.nome}} / {{pedidoPrato.prato.nome}}</td>
+                                    <td>{{pedidoPrato.opcoes}}</td>
+                                    <td ng-show="mesa.situacao == '1'">
+                                        <a href="#" class="btn btn-primary" ng-show="pedidoPrato.situacao == '0'" ng-click="CancelarItem(pedidoPrato)">Cancelar</a>
+                                        <a href="#" class="btn btn-primary" ng-show="pedidoPrato.situacao == '0'" ng-click="EntregarItem(pedidoPrato)">Entregue</a>
+                                        <label ng-show="pedidoPrato.situacao == '2'" style="color: red">cancelado</label>
+                                        <label ng-show="pedidoPrato.situacao == '1'" style="color: blue">entregue</label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+            <div class="row">
+                <div class="span10">
+                    <a href="/" class="btn btn-warning">Voltar</a>
+                    <a href="#" class="btn btn-primary" ng-show="mesa.situacao == '1'" ng-click="FecharMesa()">Fechar Mesa</a>
+                    <a href="#" class="btn btn-primary" ng-show="mesa.situacao == '2'" ng-click="LiberarMesa()">Liberar Mesa</a>
+                </div>
+            </div>
+        </div>
+</form>
+</div>

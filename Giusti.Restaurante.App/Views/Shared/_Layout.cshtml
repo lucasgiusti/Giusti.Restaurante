@@ -1,0 +1,23 @@
+﻿<html ng-app="app">
+<head>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/angular-route.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/app/app.js"></script>
+    <title>Giusti.Restaurante</title>
+    @RenderSection("JavascriptHeader", required: false)
+</head>
+<body>
+    <div class="row">
+        <div class="navbar navbar-default">
+            <div class="navbar-header">
+                <ul class="navbar navbar-nav">
+                    <li>
+                        <span class="navbar navbar-brand">Giusti.Restaurante</span>
+                    </li>
+                </ul>
+            </div>
+    </div>
+    @RenderBody()
+</body>
+</html>

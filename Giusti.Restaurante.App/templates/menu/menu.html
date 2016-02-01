@@ -1,0 +1,50 @@
+﻿<div>
+    <div class="row" ng-init="getPratos();getCategorias()">
+        <div class="span10">
+            <h2>{{heading}} para a mesa {{mesa.id}}</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span10">
+            <a href="/{{mesa.id}}" class="btn btn-warning">Voltar</a>
+            <select class="form-control" ng-model="categoriaId" ng-options="categoria.id as categoria.nome for categoria in categorias" style="width: 200px; margin-top: 5px">
+                <option value="">Categorias</option>
+            </select>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="span10">
+            <table class="table table-hover">
+                <tr ng-repeat="prato in pratos | filter:(!!categoriaId || undefined) && {categoriaId: categoriaId}">
+                    <td>{{prato.categoria.nome}} / {{prato.nome}}</td>
+                    <td>R$ {{prato.preco | number:2}}</td>
+                    <td>
+                        <div ng-show="prato.categoria.id == '1'">
+                            <input type="checkbox" ng-click="incluiOpcoes(prato, 'sem sal')"> sem sal<br>
+                        </div>
+                        <div ng-show="prato.categoria.id == '2'">
+                            <input type="checkbox" ng-click="incluiOpcoes(prato, 'picante')"> picante<br>
+                        </div>
+                        <div ng-show="prato.categoria.id == '3'">
+                            <input type="checkbox" ng-click="incluiOpcoes(prato, 'sem açucar')"> sem açucar<br>
+                        </div>
+                    </td>
+                    <td><a href="#" class="btn btn-primary" ng-click="incluiPrato(prato)">+</a> <label ng-bind="getPratoMesa(prato.id)"></label></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span10">
+            <select class="form-control" ng-model="categoriaId" ng-options="categoria.id as categoria.nome for categoria in categorias" style="width: 200px; margin-bottom: 5px">
+                <option value="">Categorias</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span10">
+            <a href="/{{mesa.id}}" class="btn btn-warning">Voltar</a>
+        </div>
+    </div>
+</div>
